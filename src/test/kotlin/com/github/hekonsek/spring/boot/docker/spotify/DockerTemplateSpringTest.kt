@@ -12,19 +12,19 @@ import org.springframework.test.context.junit4.SpringRunner
 import java.util.UUID.randomUUID
 
 @RunWith(SpringRunner::class)
-@SpringBootTest(classes = arrayOf(SpotifyDockerAutoConfiguration::class, DockerSpringTest::class))
-open class DockerSpringTest {
+@SpringBootTest(classes = arrayOf(SpotifyDockerAutoConfiguration::class, DockerTemplateSpringTest::class))
+open class DockerTemplateSpringTest {
 
     companion object {
         val containerName = "container-${randomUUID()}"
     }
 
     @Autowired
-    lateinit var docker: Docker
+    lateinit var dockerTemplate: DockerTemplate
 
     @Test
     fun shouldStartSleeperContainer() {
-        val sleeperContainer = docker.client.listContainers(filter("name", containerName)).first()
+        val sleeperContainer = dockerTemplate.client.listContainers(filter("name", containerName)).first()
         assertThat(sleeperContainer).isNotNull()
     }
 

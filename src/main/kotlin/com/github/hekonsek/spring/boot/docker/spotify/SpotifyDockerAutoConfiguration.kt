@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Configuration
 open class SpotifyDockerAutoConfiguration {
 
     @Bean
-    open fun docker(applicationContext: ApplicationContext): Docker {
-        val docker = Docker()
+    open fun docker(applicationContext: ApplicationContext): DockerTemplate {
+        val docker = DockerTemplate()
         applicationContext.getBeansOfType(NamedContainer::class.java).values.forEach { container ->
             docker.ensureIsRunning(container.name, container.config)
         }

@@ -9,7 +9,7 @@ import com.spotify.docker.client.DockerClient.LogsParam.stdout
 import com.spotify.docker.client.messages.ContainerConfig
 import org.awaitility.Awaitility.await
 
-class Docker {
+class DockerTemplate {
 
     val client = DefaultDockerClient.fromEnv().build()
 
