@@ -1,11 +1,9 @@
 package docker4dummies
 
 import com.spotify.docker.client.DefaultDockerClient
-import com.spotify.docker.client.DockerClient
-import com.spotify.docker.client.DockerClient.*
 import com.spotify.docker.client.DockerClient.ListContainersParam.allContainers
 import com.spotify.docker.client.DockerClient.ListContainersParam.filter
-import com.spotify.docker.client.DockerClient.ListImagesParam.*
+import com.spotify.docker.client.DockerClient.ListImagesParam.byName
 import com.spotify.docker.client.DockerClient.LogsParam.stderr
 import com.spotify.docker.client.DockerClient.LogsParam.stdout
 import com.spotify.docker.client.messages.ContainerConfig
@@ -13,7 +11,7 @@ import org.awaitility.Awaitility.await
 
 class Docker {
 
-    private val client = DefaultDockerClient.fromEnv().build()
+    val client = DefaultDockerClient.fromEnv().build()
 
     fun execute(container: ContainerConfig) : List<String> {
         val imageExists = !client.listImages(byName(container.image())).isEmpty()
