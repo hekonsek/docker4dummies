@@ -1,6 +1,7 @@
 package com.github.hekonsek.spring.boot.docker.spotify
 
 import com.spotify.docker.client.DefaultDockerClient
+import com.spotify.docker.client.DockerClient
 import com.spotify.docker.client.DockerClient.ListContainersParam.allContainers
 import com.spotify.docker.client.DockerClient.ListContainersParam.filter
 import com.spotify.docker.client.DockerClient.ListImagesParam.byName
@@ -9,9 +10,11 @@ import com.spotify.docker.client.DockerClient.LogsParam.stdout
 import com.spotify.docker.client.messages.ContainerConfig
 import org.awaitility.Awaitility.await
 
-class DockerTemplate {
+class DockerTemplate(val client : DockerClient = DefaultDockerClient.fromEnv().build()) {
 
-    val client = DefaultDockerClient.fromEnv().build()
+    fun close() {
+        client.close()
+    }
 
     fun execute(container: ContainerConfig) : List<String> {
         val imageExists = !client.listImages(byName(container.image())).isEmpty()
