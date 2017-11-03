@@ -12,7 +12,7 @@
     <groupId>com.github.hekonsek</groupId>
     <artifactId>spring-boot-docker-spotify</artifactId>
     <name>${project.artifactId}</name>
-    <version>0.3</version>
+    <version>0.4-SNAPSHOT</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -304,7 +304,7 @@
         <connection>scm:git:git@github.com:hekonsek/spring-boot-docker-spotify.git</connection>
         <developerConnection>scm:git:git@github.com:hekonsek/spring-boot-docker-spotify.git</developerConnection>
         <url>git@github.com:hekonsek/spring-boot-docker-spotify.git</url>
-        <tag>spring-boot-docker-spotify-0.3</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <distributionManagement>
