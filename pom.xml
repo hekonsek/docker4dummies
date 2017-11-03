@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.hekonsek</groupId>
-    <artifactId>docker4dummies</artifactId>
+    <artifactId>spring-boot-docker-spotify</artifactId>
     <name>${project.artifactId}</name>
     <version>0.1-SNAPSHOT</version>
 
@@ -198,8 +198,8 @@
 
     <!-- Required by Sonatype release -->
 
-    <description>docker4dummies</description>
-    <url>https://github.com/hekonsek/docker4dummies</url>
+    <description>spring-boot-docker-spotify</description>
+    <url>https://github.com/hekonsek/spring-boot-docker-spotify</url>
 
     <developers>
         <developer>
@@ -209,9 +209,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git@github.com:hekonsek/docker4dummies.git</connection>
-        <developerConnection>scm:git:git@github.com:hekonsek/docker4dummies.git</developerConnection>
-        <url>git@github.com:hekonsek/docker4dummies.git</url>
+        <connection>scm:git:git@github.com:hekonsek/spring-boot-docker-spotify.git</connection>
+        <developerConnection>scm:git:git@github.com:hekonsek/spring-boot-docker-spotify.git</developerConnection>
+        <url>git@github.com:hekonsek/spring-boot-docker-spotify.git</url>
         <tag>HEAD</tag>
     </scm>
 

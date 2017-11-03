@@ -1,5 +1,6 @@
-package docker4dummies
+package com.github.hekonsek.spring.boot.docker.spotify
 
+import com.github.hekonsek.spring.boot.docker.spotify.Docker
 import com.spotify.docker.client.DefaultDockerClient
 import com.spotify.docker.client.DockerClient.ListContainersParam.filter
 import com.spotify.docker.client.messages.ContainerConfig

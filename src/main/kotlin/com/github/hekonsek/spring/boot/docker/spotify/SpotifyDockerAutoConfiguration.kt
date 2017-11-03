@@ -1,4 +1,4 @@
-package docker4dummies
+package com.github.hekonsek.spring.boot.docker.spotify
 
 import org.springframework.context.ApplicationContext
 import org.springframework.context.annotation.Bean
