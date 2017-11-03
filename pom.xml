@@ -17,9 +17,12 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <jackson.version>2.9.2</jackson.version>
+        <!-- Dependencies versions -->
+        <assertj-core.version>3.6.2</assertj-core.version>
+        <junit.version>4.12</junit.version>
         <kotlin.version>1.1.51</kotlin.version>
-        <spring-boot.version>1.5.4.RELEASE</spring-boot.version>
+        <spotify-docker-client.version>8.9.1</spotify-docker-client.version>
+        <spring-boot.version>2.0.0.M5</spring-boot.version>
 
         <!-- Plugins versions -->
         <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
@@ -35,13 +38,18 @@
     <dependencies>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-reflect</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib-jre8</artifactId>
             <version>${kotlin.version}</version>
         </dependency>
         <dependency>
             <groupId>com.spotify</groupId>
             <artifactId>docker-client</artifactId>
-            <version>8.9.1</version>
+            <version>${spotify-docker-client.version}</version>
         </dependency>
         <dependency>
             <groupId>org.awaitility</groupId>
@@ -59,13 +67,13 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>3.6.2</version>
+            <version>${assertj-core.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -187,6 +195,17 @@
             </build>
         </profile>
     </profiles>
+
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/libs-milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
     <pluginRepositories>
         <pluginRepository>
