@@ -1,6 +1,6 @@
 # Spring Cloud Docker Spotify
 
-[![Version](https://img.shields.io/badge/docker4dummies-0.1-blue.svg)](https://github.com/hekonsek/docker4dummies/releases)
+[![Version](https://img.shields.io/badge/spring-boot-docker-spotify-0.1-blue.svg)](https://github.com/hekonsek/spring-boot-docker-spotify/releases)
 
 **Spring Cloud Docker Spotify** provides template around [Spotify Docker client](https://github.com/spotify/docker-client) simplifying common
 operations over Docker containers.
