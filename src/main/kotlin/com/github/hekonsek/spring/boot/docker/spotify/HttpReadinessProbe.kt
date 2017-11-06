@@ -16,7 +16,23 @@
  */
 package com.github.hekonsek.spring.boot.docker.spotify
 
-import com.spotify.docker.client.messages.ContainerConfig
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import java.util.concurrent.Callable
 
-class NamedContainer(val name: String, val config: ContainerConfig, val readinessProbe: Callable<Boolean>? = null)
+class HttpReadinessProbe(val url : String) : Callable<Boolean> {
+
+    private val http = OkHttpClient()
+
+    override fun call(): Boolean {
+        try {
+            val request = Request.Builder().get().url(url).build()
+            http.newCall(request).execute().use { response ->
+                return response.code() == 200
+            }
+        } catch (e : Exception) {
+            return false
+        }
+    }
+
+}

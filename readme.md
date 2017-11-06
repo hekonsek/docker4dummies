@@ -49,3 +49,7 @@ Executing Docker container and returning stdout+stderr as a list of Strings:
 ContainerConfig container = ContainerConfig.builder().image("fedora:26").cmd("echo", "foo").build();
 List<String> output = dockerTemplate.execute(container);
 ```
+
+## License
+
+This project is distributed under Apache 2.0 license.

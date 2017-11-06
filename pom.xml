@@ -22,8 +22,9 @@
         <awaitility.version>3.0.0</awaitility.version>
         <jersey.version>2.22.2</jersey.version>
         <kotlin.version>1.1.51</kotlin.version>
+        <okhttp.version>3.9.0</okhttp.version>
         <spotify-docker-client.version>8.9.1</spotify-docker-client.version>
-        <spring-boot.version>2.0.0.M5</spring-boot.version>
+        <spring-boot.version>2.0.0.M6</spring-boot.version>
 
         <!-- Plugins versions -->
         <maven-enforcer-plugin.version>3.0.0-M1</maven-enforcer-plugin.version>
@@ -97,13 +98,18 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.spotify</groupId>
             <artifactId>docker-client</artifactId>
             <version>${spotify-docker-client.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>${okhttp.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
         </dependency>
         <dependency>
             <groupId>org.awaitility</groupId>
