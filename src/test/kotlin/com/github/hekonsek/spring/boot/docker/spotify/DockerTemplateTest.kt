@@ -51,7 +51,7 @@ class DockerTemplateTest {
         val container = ContainerConfig.builder().build()
 
         // When
-        val output = docker.execute(container)
+        docker.execute(container)
     }
 
     @Test

@@ -37,6 +37,8 @@ Then add an actual spring-boot-docker-spotify jar into your classpath:
 In order to use Docker template, just inject it into your bean of choice:
 
 ```
+import com.github.hekonsek.spring.boot.docker.spotify.DockerTemplate;
+...
 @Autowired
 DockerTemplate dockerTemplate;
 ```
@@ -46,8 +48,27 @@ DockerTemplate dockerTemplate;
 Executing Docker container and returning stdout+stderr as a list of Strings:
 
 ```
-ContainerConfig container = ContainerConfig.builder().image("fedora:26").cmd("echo", "foo").build();
-List<String> output = dockerTemplate.execute(container);
+import com.spotify.docker.client.messages.ContainerConfig;
+import com.github.hekonsek.spring.boot.docker.spotify.DockerTemplate;
+
+...
+
+ContainerConfig containerConfig = ContainerConfig.builder().image("fedora:26").cmd("echo", "foo").build();
+List<String> output = dockerTemplate.execute(containerConfig);
+```
+
+Ensuring that containerized daemon is running:
+
+```
+import com.spotify.docker.client.messages.ContainerConfig;
+import com.github.hekonsek.spring.boot.docker.spotify.DockerTemplate;
+import com.github.hekonsek.spring.boot.docker.spotify.NamedContainer;
+
+...
+
+ContainerConfig containerConfig = ContainerConfig.builder().image("mongo").build();
+NamedContainer container = new NamedContainer("mongo", container, containerConfig);
+dockerTemplate.ensureIsRunning(container);
 ```
 
 ## License
