@@ -8,17 +8,20 @@ import com.spotify.docker.client.DockerClient.ListImagesParam.byName
 import com.spotify.docker.client.DockerClient.LogsParam.stderr
 import com.spotify.docker.client.DockerClient.LogsParam.stdout
 import com.spotify.docker.client.messages.ContainerConfig
+import org.apache.commons.lang3.Validate
 import org.awaitility.Awaitility.await
 
-class DockerTemplate(val client : DockerClient = DefaultDockerClient.fromEnv().build()) {
+class DockerTemplate(val client: DockerClient = DefaultDockerClient.fromEnv().build()) {
 
     fun close() {
         client.close()
     }
 
-    fun execute(container: ContainerConfig) : List<String> {
+    fun execute(container: ContainerConfig): List<String> {
+        Validate.notBlank(container.image(), "Container name cannot be empty.")
+
         val imageExists = !client.listImages(byName(container.image())).isEmpty()
-        if(!imageExists) {
+        if (!imageExists) {
             client.pull(container.image())
         }
         val containerId = client.createContainer(container).id()
@@ -29,20 +32,22 @@ class DockerTemplate(val client : DockerClient = DefaultDockerClient.fromEnv().b
         return client.logs(containerId, stdout(), stderr()).readFully().split("\n")
     }
 
-    fun ensureIsRunning(name : String, container: ContainerConfig) {
+    fun ensureIsRunning(name: String, container: ContainerConfig) {
+        Validate.notBlank(container.image(), "Container name cannot be empty.")
+
         val isRunning = !client.listContainers(filter("name", name)).isEmpty()
-        if(!isRunning) {
+        if (!isRunning) {
             val containers = client.listContainers(allContainers(true), filter("name", name))
             val isCreated = !containers.isEmpty()
-            val containerId : String?
-            if(isCreated) {
-                containerId = containers.first().id()
-            } else {
-                val imageExists = !client.listImages(byName(container.image())).isEmpty()
-                if(!imageExists) {
-                    client.pull(container.image())
+            val containerId = when {
+                isCreated -> containers.first().id()
+                else -> {
+                    val imageExists = !client.listImages(byName(container.image())).isEmpty()
+                    if (!imageExists) {
+                        client.pull(container.image())
+                    }
+                    client.createContainer(container, name).id()
                 }
-                containerId = client.createContainer(container, name).id()
             }
             client.startContainer(containerId)
         }

@@ -27,6 +27,15 @@ class DockerTemplateTest {
         assertThat(output).contains("foo")
     }
 
+    @Test(expected = NullPointerException::class)
+    fun shouldValidateExecutingContainerWithoutImage() {
+        // Given
+        val container = ContainerConfig.builder().build()
+
+        // When
+        val output = docker.execute(container)
+    }
+
     @Test
     fun shouldStartContainer() {
         // When
