@@ -16,24 +16,22 @@
  */
 package com.github.hekonsek.spring.boot.docker.spotify
 
+import com.github.hekonsek.spring.boot.docker.spotify.TestConfig.Companion.containerName
 import com.spotify.docker.client.DockerClient.ListContainersParam.filter
 import com.spotify.docker.client.messages.ContainerConfig
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.annotation.Bean
 import org.springframework.test.context.junit4.SpringRunner
 import java.util.UUID.randomUUID
 
 @RunWith(SpringRunner::class)
-@SpringBootTest(classes = arrayOf(SpotifyDockerAutoConfiguration::class, DockerTemplateSpringTest::class))
+@SpringBootTest(classes = arrayOf(TestConfig::class))
 open class DockerTemplateSpringTest {
-
-    companion object {
-        val containerName = "container-${randomUUID()}"
-    }
 
     @Autowired
     lateinit var dockerTemplate: DockerTemplate
@@ -42,6 +40,15 @@ open class DockerTemplateSpringTest {
     fun shouldStartSleeperContainer() {
         val sleeperContainer = dockerTemplate.client.listContainers(filter("name", containerName)).first()
         assertThat(sleeperContainer).isNotNull()
+    }
+
+}
+
+@SpringBootApplication
+open class TestConfig {
+
+    companion object {
+        val containerName = "container-${randomUUID()}"
     }
 
     @Bean
