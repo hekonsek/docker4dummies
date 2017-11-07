@@ -19,4 +19,4 @@ package com.github.hekonsek.spring.boot.docker.spotify
 import com.spotify.docker.client.messages.ContainerConfig
 import java.util.concurrent.Callable
 
-class NamedContainer(val name: String, val config: ContainerConfig, val readinessProbe: Callable<Boolean>? = null)
+class NamedContainer @JvmOverloads constructor(val name: String, val config: ContainerConfig, val readinessProbe: Callable<Boolean>? = null)
